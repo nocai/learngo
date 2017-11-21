@@ -2,8 +2,8 @@ package americanise
 
 import (
 	"fmt"
-	"os"
 	"log"
+	"os"
 	"path/filepath"
 	"testing"
 )
@@ -23,7 +23,7 @@ func TestAmericanise(t *testing.T) {
 		defer inFile.Close()
 	}
 
-	if outFilename != ""{
+	if outFilename != "" {
 		if outFile, err = os.Create(outFilename); err != nil {
 			log.Fatal(err)
 		}

@@ -1,12 +1,12 @@
 package ref
 
 import (
-	"testing"
 	"fmt"
-	"reflect"
+	"github.com/astaxie/beego/logs"
 	"io"
 	"os"
-	"github.com/astaxie/beego/logs"
+	"reflect"
+	"testing"
 )
 
 type MyInt int
@@ -89,7 +89,7 @@ type T struct {
 }
 
 func TestRef6(tt *testing.T) {
-	var t = T{A:23, B:"skidoo"}
+	var t = T{A: 23, B: "skidoo"}
 	s := reflect.ValueOf(&t).Elem()
 	typeOfT := s.Type()
 	for i := 0; i < s.NumField(); i++ {

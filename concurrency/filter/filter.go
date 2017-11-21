@@ -1,9 +1,9 @@
 package filter
 
 import (
-	"strings"
-	"path/filepath"
 	"fmt"
+	"path/filepath"
+	"strings"
 )
 
 func source(files []string) <-chan string {

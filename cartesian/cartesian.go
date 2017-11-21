@@ -1,8 +1,8 @@
 package cartesian
 
 import (
-	"runtime"
 	"fmt"
+	"runtime"
 )
 
 type polar struct {
@@ -14,7 +14,6 @@ type cartesian struct {
 	x float64
 	y float64
 }
-
 
 var prompt = "Enter a radius and an angle (in degrees), e.g., 12.5 90, " + "or %s to qiut"
 

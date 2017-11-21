@@ -1,17 +1,17 @@
 package oop
 
 import (
-	"image/color"
-	"testing"
 	"fmt"
-	"unicode"
-	"strings"
+	"image/color"
 	"io"
+	"strings"
+	"testing"
+	"unicode"
 )
 
 type ColoredPoint struct {
-	color.Color // 匿名字段（嵌入）
-	x, y int    // 具名字段（聚合）
+	color.Color     // 匿名字段（嵌入）
+	x, y        int // 具名字段（聚合）
 }
 
 func TestOop1(t *testing.T) {
@@ -173,7 +173,6 @@ func TestOop8(t *testing.T) {
 }
 
 type Object interface {
-
 }
 
 func TestOop9(t *testing.T) {
@@ -411,7 +410,7 @@ type Optioner interface {
 
 type OptionCommon struct {
 	ShortName string "short option name"
-	LongName string "long option name"
+	LongName  string "long option name"
 }
 
 type IntOption struct {
@@ -427,7 +426,7 @@ func (option IntOption) IsValid() bool {
 	return option.Min <= option.Value && option.Value <= option.Max
 }
 func name(shortName, longName string) string {
-	if longName == ""{
+	if longName == "" {
 		return shortName
 	}
 	return longName
@@ -437,6 +436,7 @@ type StringOption struct {
 	OptionCommon
 	Value string
 }
+
 func (so StringOption) Name() string {
 	return name(so.ShortName, so.LongName)
 }
@@ -446,6 +446,7 @@ func (so StringOption) IsValid() bool {
 	}
 	return false
 }
+
 type FloatOption struct {
 	Optioner
 	Value float64
@@ -464,9 +465,9 @@ func TestOop18(t *testing.T) {
 	fmt.Println(new(OptionCommon))
 
 	fileOption := StringOption{OptionCommon{"f", "file"}, "index.html"}
-	topOption := IntOption{OptionCommon:OptionCommon{"t", "top"}, Max:100}
-	sizeOption := FloatOption{GenericOption{OptionCommon{"s","size"}}, 19.5}
-	for _, option := range []Optioner {topOption, fileOption, sizeOption} {
+	topOption := IntOption{OptionCommon: OptionCommon{"t", "top"}, Max: 100}
+	sizeOption := FloatOption{GenericOption{OptionCommon{"s", "size"}}, 19.5}
+	for _, option := range []Optioner{topOption, fileOption, sizeOption} {
 		fmt.Print("name = ", option.Name(), "*valid = ", option.IsValid())
 		fmt.Print("*value = ")
 		switch option := option.(type) {

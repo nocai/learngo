@@ -1,15 +1,15 @@
 package concurrency
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 type Job int
 
 func Test(t *testing.T) {
 	jobs := make(chan Job)
-	jobList := []Job {1, 2, 3}
+	jobList := []Job{1, 2, 3}
 	done := make(chan bool, len(jobList))
 
 	go func() {
@@ -26,7 +26,7 @@ func Test(t *testing.T) {
 		}
 	}()
 
-	for i := 0; i < len(jobList); i ++ {
-		<- done
+	for i := 0; i < len(jobList); i++ {
+		<-done
 	}
 }

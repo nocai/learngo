@@ -1,10 +1,10 @@
 package americanise
 
 import (
-	"io"
 	"bufio"
-	"regexp"
+	"io"
 	"io/ioutil"
+	"regexp"
 	"strings"
 )
 

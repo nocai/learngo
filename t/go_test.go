@@ -1,19 +1,19 @@
 package t
 
 import (
-	"testing"
 	"fmt"
-	"strings"
-	"strconv"
-	"unicode/utf8"
-	"unicode"
 	"image/color"
-	"reflect"
-	"sort"
-	"math/rand"
-	"os"
 	"log"
 	"math"
+	"math/rand"
+	"os"
+	"reflect"
+	"sort"
+	"strconv"
+	"strings"
+	"testing"
+	"unicode"
+	"unicode/utf8"
 )
 
 func Test1(t *testing.T) {
@@ -42,7 +42,8 @@ func Test3(t *testing.T) {
 	for _, record := range []string{"刘军*刘军", "刘军|刘军", "刘军$刘军"} {
 		rs := strings.FieldsFunc(record, func(char rune) bool {
 			switch char {
-			case '*', '|', '$':return true
+			case '*', '|', '$':
+				return true
 			}
 			return false
 		})
@@ -140,14 +141,14 @@ func TestArray(t *testing.T) {
 	grid1[1][0], grid1[1][1], grid1[1][2] = 8, 6, 2
 	grid2 := [3][3]int{{4, 3}, {8, 6, 2}}
 	cities := [...]string{"ShangHai", "Mumbai", "Istanbul", "Beijin"}
-	cities[len(cities) - 1] = "Karachi"
+	cities[len(cities)-1] = "Karachi"
 	fmt.Println("Type Len Contents")
 	fmt.Printf("%-8T %2d %v\n", buffer, len(buffer), buffer)
 	fmt.Printf("%-8T %2d %q\n", cities, len(cities), cities)
 	fmt.Printf("%-8T %2d %v\n", grid1, len(grid1), grid1)
 	fmt.Printf("%-8T %2d %v\n", grid2, len(grid2), grid2)
 
-	var array [2] int
+	var array [2]int
 	fmt.Println(len(array))
 	fmt.Println(cap(array))
 
@@ -294,7 +295,7 @@ func TestMap2(t *testing.T) {
 	nameForPoint[pb] = "b"
 	fmt.Println(nameForPoint)
 
-	populationForCity := map[string]int{"A":1, "B":2, "C":3}
+	populationForCity := map[string]int{"A": 1, "B": 2, "C": 3}
 	for key, value := range populationForCity {
 		fmt.Printf("%-10s %8d\n", key, value)
 	}
@@ -313,13 +314,14 @@ func TestMap2(t *testing.T) {
 
 func TestOrder(t *testing.T) {
 	a, b, c := 2, 3, 5
-	for a := 7; a < 8; a ++ {
+	for a := 7; a < 8; a++ {
 		b := 11
 		c = 13
 		fmt.Printf("Inner: a->%d b->%d c->%d\n", a, b, c)
 	}
 	fmt.Printf("outer: a->%d b->%d c->%d\n", a, b, c)
 }
+
 //
 //func shadow() (err error) {
 //	//x, err := check1()
@@ -341,7 +343,7 @@ func (ss StringSlice) String() string {
 	for _, str := range ss {
 		result += "\"" + str + "\"" + ", "
 	}
-	result = result[:len(result) - 1]
+	result = result[:len(result)-1]
 	return result + "}"
 }
 func TestOrder2(t *testing.T) {
@@ -367,12 +369,12 @@ func TestOrder3(t *testing.T) {
 	}
 }
 
-func createCounter(start int) (chan int) {
+func createCounter(start int) chan int {
 	next := make(chan int)
 	go func(i int) {
 		for {
 			next <- i
-			i ++
+			i++
 		}
 	}(start)
 	return next
@@ -381,7 +383,7 @@ func createCounter(start int) (chan int) {
 func TestOrder4(t *testing.T) {
 	counterA := createCounter(2)
 	counterB := createCounter(102)
-	for i := 0; i < 5; i ++ {
+	for i := 0; i < 5; i++ {
 		a := <-counterA
 		fmt.Printf("(A->%d, B->%d)", a, <-counterB)
 	}
@@ -446,13 +448,13 @@ func TestOrder6(t *testing.T) {
 
 func Fibonacci(n int) int {
 	if n < 2 {
-		return n;
+		return n
 	}
-	return Fibonacci(n - 1) + Fibonacci(n - 2)
+	return Fibonacci(n-1) + Fibonacci(n-2)
 }
 
 func TestOrder7(t *testing.T) {
-	for n := 0; n < 20; n ++ {
+	for n := 0; n < 20; n++ {
 		fmt.Print(Fibonacci(n), " ")
 	}
 	fmt.Println()
@@ -462,14 +464,14 @@ func HofstadterFemale(n int) int {
 	if n <= 0 {
 		return 1
 	}
-	return n - HofstadterMale(HofstadterFemale(n - 1))
+	return n - HofstadterMale(HofstadterFemale(n-1))
 }
 
 func HofstadterMale(n int) int {
 	if n <= 0 {
 		return 0
 	}
-	return n - HofstadterFemale(HofstadterMale(n - 1))
+	return n - HofstadterFemale(HofstadterMale(n-1))
 }
 
 func TestOrder8(t *testing.T) {
@@ -492,13 +494,14 @@ func IsPalindrome(word string) bool {
 	if first != last {
 		return false
 	}
-	return IsPalindrome(word[sizeOfFirst:len(word) - sizeOfLast])
+	return IsPalindrome(word[sizeOfFirst : len(word)-sizeOfLast])
 }
 
 func TestOrder9(t *testing.T) {
 	str := "AbbAc"
 	fmt.Println(IsPalindrome(str))
 }
+
 //
 //var FunctionForSuffix = map[string]func(string)([]string, error) {
 //	".gz":GzipFileList,
@@ -519,7 +522,7 @@ func Minimum(first interface{}, rest ...interface{}) interface{} {
 	minimum := first
 	for _, x := range rest {
 		switch x := x.(type) {
-		case int :
+		case int:
 			if x < minimum.(int) {
 				minimum = x
 			}
@@ -527,7 +530,7 @@ func Minimum(first interface{}, rest ...interface{}) interface{} {
 			if x < minimum.(float64) {
 				minimum = x
 			}
-		case string :
+		case string:
 			if x < minimum.(string) {
 				minimum = x
 			}
@@ -543,13 +546,13 @@ func TestOrder10(t *testing.T) {
 
 func Index(xs interface{}, x interface{}) int {
 	switch slice := xs.(type) {
-	case []int :
+	case []int:
 		for i, y := range slice {
 			if y == x.(int) {
 				return i
 			}
 		}
-	case []string :
+	case []string:
 		for i, y := range slice {
 			if y == x.(string) {
 				return i
@@ -563,11 +566,11 @@ func IndexReflectX(xs interface{}, x interface{}) int {
 	if slice := reflect.ValueOf(xs); slice.Kind() == reflect.Slice {
 		for i := 0; i < slice.Len(); i++ {
 			switch y := slice.Index(i).Interface().(type) {
-			case int :
+			case int:
 				if y == x.(int) {
 					return i
 				}
-			case string :
+			case string:
 				if y == x.(string) {
 					return i
 				}
@@ -579,7 +582,7 @@ func IndexReflectX(xs interface{}, x interface{}) int {
 
 func IndexReflect(xs interface{}, x interface{}) int {
 	if slice := reflect.ValueOf(xs); slice.Kind() == reflect.Slice {
-		for i := 0; i < slice.Len(); i ++ {
+		for i := 0; i < slice.Len(); i++ {
 			if reflect.DeepEqual(x, slice.Index(i)) {
 				return i
 			}
@@ -625,7 +628,7 @@ func IntIndexSlicer(ints []int, x int) int {
 	return IndexSlicer(IntSlice(ints), x)
 }
 func IndexSlicer(slice Slicer, x interface{}) int {
-	for i := 0; i < slice.Len(); i ++ {
+	for i := 0; i < slice.Len(); i++ {
 		if slice.EqualTo(i, x) {
 			return i
 		}
@@ -653,7 +656,7 @@ func TestOrder12(t *testing.T) {
 }
 
 func SliceIndex(limit int, predicate func(i int) bool) int {
-	for i := 0; i < limit; i ++ {
+	for i := 0; i < limit; i++ {
 		if predicate(i) {
 			return i
 		}
@@ -680,14 +683,14 @@ func TestOrder13(t *testing.T) {
 
 func TestOrder14(t *testing.T) {
 	i := SliceIndex(math.MaxInt32, func(i int) bool {
-		return i > 0 && i % 27 == 0 && i % 51 == 0
+		return i > 0 && i%27 == 0 && i%51 == 0
 	})
 	fmt.Println(i)
 }
 
 func IntFilter(slice []int, predicate func(int) bool) []int {
 	filtered := make([]int, 0, len(slice))
-	for i := 0; i < len(slice); i ++ {
+	for i := 0; i < len(slice); i++ {
 		if predicate(slice[i]) {
 			filtered = append(filtered, slice[i])
 		}
@@ -698,13 +701,13 @@ func IntFilter(slice []int, predicate func(int) bool) []int {
 func TestOrder15(t *testing.T) {
 	readings := []int{4, -3, 2, -7, 8, 19, -11, 7, 18, -6}
 	even := IntFilter(readings, func(i int) bool {
-		return i % 2 == 0
+		return i%2 == 0
 	})
 	fmt.Println(even)
 }
 
 func Filter(limit int, predicate func(int) bool, appender func(int)) {
-	for i := 0; i < limit; i ++ {
+	for i := 0; i < limit; i++ {
 		if predicate(i) {
 			appender(i)
 		}
@@ -715,7 +718,7 @@ func TestOrder16(t *testing.T) {
 	readings := []int{4, -3, 2, -7, 8, 19, -11, 7, 18, -6}
 	even := make([]int, 0, len(readings))
 	Filter(len(readings), func(i int) bool {
-		return readings[i] % 2 == 0
+		return readings[i]%2 == 0
 	}, func(i int) {
 		even = append(even, readings[i])
 	})
@@ -736,7 +739,7 @@ func TestOrder17(t *testing.T) {
 func TestOrder18(t *testing.T) {
 	var product int64 = 1
 	Filter(26, func(i int) bool {
-		return i % 2 != 0
+		return i%2 != 0
 	}, func(i int) {
 		product *= int64(i)
 	})
@@ -749,9 +752,30 @@ func TestAdmin(t *testing.T) {
 }
 
 type Admin struct {
-	Id        int64 `json:"id"`
+	Id        int64  `json:"id"`
 	AdminName string `json:"admin_name"`
-	UserId    int64 `orm:"unique" json:"user_id"`
+	UserId    int64  `orm:"unique" json:"user_id"`
 
-	Invalid   interface{} `json:"invalid"`
+	Invalid interface{} `json:"invalid"`
+}
+
+type User struct {
+	Username string
+	Age      int
+}
+
+func (this *User) String() string {
+	return fmt.Sprintf("%#v", this)
+}
+
+type Devp struct {
+	*User
+	AdminName string
+}
+
+func TestDevp(t *testing.T) {
+	user := &User{Username: "username", Age: 1}
+	fmt.Println(user)
+	devp := Devp{user, "adminName"}
+	fmt.Println(fmt.Sprintf("%#v", devp))
 }

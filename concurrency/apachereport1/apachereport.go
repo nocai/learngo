@@ -1,10 +1,10 @@
 package apachereport1
 
 import (
-	"os"
-	"log"
 	"bufio"
 	"io"
+	"log"
+	"os"
 	"sync"
 )
 
@@ -35,7 +35,7 @@ func readLines(filename string, lines chan<- string) {
 
 type pageMap struct {
 	countForPae map[string]int
-	mutex *sync.RWMutex
+	mutex       *sync.RWMutex
 }
 
 func NewPageMap() *pageMap {
@@ -45,7 +45,7 @@ func NewPageMap() *pageMap {
 func (pm *pageMap) Increment(page string) {
 	pm.mutex.Lock()
 	defer pm.mutex.Unlock()
-	pm.countForPae[page] ++
+	pm.countForPae[page]++
 }
 
 func (pm *pageMap) Len() int {

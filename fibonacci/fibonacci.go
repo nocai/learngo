@@ -13,7 +13,7 @@ func init() {
 		if x < 2 {
 			return x
 		}
-		return Fibonacci(x - 1).(int) + Fibonacci(x - 2).(int)
+		return Fibonacci(x-1).(int) + Fibonacci(x-2).(int)
 	})
 }
 
@@ -32,4 +32,3 @@ func Memoize(function memoizeFunction) memoizeFunction {
 		return value
 	}
 }
-

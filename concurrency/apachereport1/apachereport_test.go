@@ -1,8 +1,8 @@
 package apachereport1
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 func TestApachereport(t *testing.T) {

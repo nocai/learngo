@@ -1,8 +1,8 @@
 package fibonacci
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 func TestFinonacci(t *testing.T) {

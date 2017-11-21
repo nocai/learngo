@@ -11,6 +11,6 @@ func TestFilter(t *testing.T) {
 	sink(channel3)
 }
 
-func handleCommandLine() (int, int, []string, []string){
+func handleCommandLine() (int, int, []string, []string) {
 	return 0, 0, []string{}, []string{}
 }
