@@ -1,0 +1,32 @@
+server:
+  port: 8082
+
+database:
+  dialect: mysql
+  username: root
+  password: ivargo_981
+  host: 192.168.0.203
+  port: 3306
+  dbname: mmc
+  logmode: true
+  maxIdleConns: 10
+  maxOpenConns: 100
+
+redis:
+  sentinel:
+    masterName: mymaster
+    password: ivargo_981
+    addrs:
+      - 192.168.0.205:26379
+      - 192.168.0.206:26379
+    db: 0
+    poolSize: 200
+
+consul:
+  scheme: http
+  address: 127.0.0.1:8500
+  agentService:
+    http: /ping
+    timeout: 5s
+    interval: 5s
+

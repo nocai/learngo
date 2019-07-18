@@ -1,0 +1,31 @@
+//指定版本
+//注意proto3与proto2的写法有些不同
+syntax = "proto3";
+
+//包名，通过protoc生成时go文件时
+package echo;
+
+message EchoRequest {
+    string In = 1;
+}
+
+message LouderRequest {
+    // In is the string to echo back
+    string In = 1;
+    // Loudness is the number of exclamations marks to add to the echoed string
+    int32 Loudness = 2;
+}
+
+message EchoResponse {
+    string Out = 1;
+}
+
+import "https://github.com/tuneinc/truss/deftree/googlethirdparty/annotations.proto";
+
+service Echo {
+    rpc Echo (EchoRequest) returns (EchoResponse) {
+        option (google.api.http) = {
+            get:"/echo"
+        };
+    }
+}
